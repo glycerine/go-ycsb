@@ -101,6 +101,7 @@ Available Commands:
 - etcd
 - DynamoDB
 - S3 (Amazon S3 / S3-compatible)
+- YogaDB
 
 ## Output configuration
 

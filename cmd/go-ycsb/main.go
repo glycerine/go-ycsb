@@ -78,6 +78,8 @@ import (
 	_ "github.com/pingcap/go-ycsb/db/dynamodb"
 	// Register s3 database
 	_ "github.com/pingcap/go-ycsb/db/s3"
+	// Register yogadb database
+	_ "github.com/pingcap/go-ycsb/db/yogadb"
 )
 
 var (

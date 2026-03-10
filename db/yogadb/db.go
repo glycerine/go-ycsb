@@ -26,7 +26,7 @@
  * LICENSE file.
  */
 
-package boltdb
+package yogadb
 
 import (
 	"context"
