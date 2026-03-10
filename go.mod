@@ -46,7 +46,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression v1.4.26
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.1
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.0
-	github.com/glycerine/yogadb v0.9.5
+	github.com/glycerine/yogadb v0.9.7
 	go.etcd.io/etcd/client/pkg/v3 v3.5.2
 	go.etcd.io/etcd/client/v3 v3.5.2
 	go.sia.tech/gofakes3 v0.0.1
