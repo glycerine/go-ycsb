@@ -91,7 +91,9 @@ func (c yogaCreator) Create(p *properties.Properties) (ycsb.DB, error) {
 func getOptions(p *properties.Properties) yogaOptions {
 	path := p.GetString(yogaPath, "/tmp/yogadb")
 
-	opts := &yoga.Config{}
+	opts := &yoga.Config{
+		OmitMemWalFsync: true, // prevents fsync after every VLOG write.
+	}
 
 	// opts.Timeout = p.GetDuration(yogaTimeout, 0)
 	// opts.NoGrowSync = p.GetBool(yogaNoGrowSync, false)
@@ -139,6 +141,7 @@ func (db *yogaDB) Read(ctx context.Context, table string, key string, fields []s
 }
 
 func (db *yogaDB) Scan(ctx context.Context, table string, startKey string, count int, fields []string) ([]map[string][]byte, error) {
+
 	res := make([]map[string][]byte, count)
 	err := db.db.View(func(ro *yoga.ReadOnlyTx) error {
 		// bucket := tx.Bucket([]byte(table))
@@ -203,6 +206,8 @@ func (db *yogaDB) Update(ctx context.Context, table string, key string, values m
 			return err
 		}
 
+		//vv("updating key '%v'; value sz = %v", key, len(buf))
+
 		return tx.Put(key, buf)
 	})
 	return err
@@ -225,6 +230,8 @@ func (db *yogaDB) Insert(ctx context.Context, table string, key string, values m
 		if err != nil {
 			return err
 		}
+
+		//vv("inserting key '%v'; value sz = %v", key, len(buf))
 
 		return tx.Put(table+"/"+key, buf)
 	})
